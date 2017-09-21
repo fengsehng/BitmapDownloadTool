@@ -1,98 +1,18 @@
-# BitmapDownloadTool
-Download Bitmap tool is based on Picasso （基于Picasso的图片下载封装类）
 
-
-
-
-#基于Piccaso的图片下载工具类封装
-
-感谢强哥帮助修改完善~
-
-
-#核心下载类BitmapDownloadHelper
-
-
-1.downloadSinglePic(String url, final OnDownloadResultListener listener) 下载单张图片
-
-2.下载多张图片downloadPic(List<String> urlList)
-
-3.在下载多张图片时候回调接口置空
-
-
-整体代码结构如下
-
-
-#完整代码github链接如下：
-
-https://github.com/fengsehng/BitmapDownloadTool
-
-
-
-```
-
-public class BitmapDownloadHelper {
-  /**
-   * 用于存储返回的结果
-   */
-  private static Map<String, Boolean> sResultMap = new HashMap<>();
-  private static String PIC_SIZE = NewHouseConstantUtils.IMAGE_SIZE_POSTFIX.IMG_FRAME_ALBUM;
-
-  /**
-   * 批量下载图片
-   * @param urlList
-   */
-  public static void downloadPic(List<String> urlList) {
-    ToastUtil.toast(Entry.getContext(), "图片保存中");
-    for (final String url : urlList) {
-      downloadSinglePic(url, null);
-    }
-    toastResult(urlList.size());
-  }
-
-  /**
-   * 下载单张图片
-   * @param url
-   */
-  public static void downloadSinglePic(String url, final OnDownloadResultListener listener) {
-      }
-
-  /**
-   * 最终的弹出结果
-   * @param total
-   */
-  private static void toastResult(int total) {
-   
-  }
-
-  /**
-   * 回调下载状态接口
-   */
-  public interface OnDownloadResultListener{
-    void onDownloadBegin();
-    void onDownloadResult(boolean success);
-  }
-}
-
-```
-
-
-#文件处理类
-
-
-1.判断指定的文件夹是否存在图片
-
-2.图片的文件名字是经过md5处理的
-
-3.获取系统相册的目录
-
-代码框架如下：
-
-
-```
-
+import android.graphics.Bitmap;
+import android.os.Environment;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Created by（fengsehng） on 2017/9/19.
+ * Created by fengsehng  on 2017/9/19.
  * @author fengsehng
  *
  */
@@ -102,7 +22,7 @@ public class PicFileUtil {
    * 相册文件夹
    */
 
-  public static String PATH_PHOTOGRAPH = “/fengsehng/“;
+  public static String PATH_PHOTOGRAPH = "/fengsehng/";
 
 
   /**
@@ -301,17 +221,3 @@ public class PicFileUtil {
     return false;
   }
 }
-
-
-```
-
-
-#完整代码链接：
-
-https://github.com/fengsehng/BitmapDownloadTool
-
-
-
-
-
-
